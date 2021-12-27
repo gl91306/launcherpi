@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' 'unsafe-eval';" />
+    <link rel="stylesheet" href="index.css">
+</head>
+<body style="background: white;">
+    <span>
+        <h1>Pi-Launcher</h1>
+        <div id="exit"></div>
+        <br>
+        <br>
+        <p>Select version</p>
+        <select name="subject" id="subject">
+            <option value="" selected="selected">Installed: </option>
+        </select>
+        <button onclick="launch()" id="launchbutton">Launch</button>
+        <p id="islog">Checking login status...</p>
+        <div id="myProgress">
+            <div id="myBar"></div>
+        </div>
+    </span>
+    <a href="login.html">LOGIN</a>
+    <script src="index.js"></script>
+</body>
+</html>
