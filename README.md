@@ -1,2 +1,2 @@
 # launcherpi
-bascicly a mc launcher for the pi.
+Minecraft Launcher for Raspberry Pi computers.
