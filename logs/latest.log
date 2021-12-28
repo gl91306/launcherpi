@@ -1,15 +1,4 @@
-[16:27:10] [main/INFO]: Setting user: klopin10
-[16:27:10] [main/INFO]: (Session ID is token:eyJhbGciOiJIUzI1NiJ9.eyJhZ2ciOiJBZHVsdCIsInN1YiI6IjI3OWI4NTc0MjQxMjE0ZTUyYWEzZGVjZDFmMGQ5OTA0IiwieWdndCI6IjI0Yjk4MWY2NjI3NzQ1YWVhNzNhYWM3Y2ZiYjcxYmFlIiwic3ByIjoiYWUyMzc2YzJlM2VlNDQxNzg1YWY5NzdmY2QwNWJkM2IiLCJpc3MiOiJZZ2dkcmFzaWwtQXV0aCIsImV4cCI6MTYzNzY1NDAyNCwiaWF0IjoxNjM3NDgxMjI0fQ.H_NeiGXHn1CCe240U9mYRe0rbx8iBtOk1o24DIjIqL0:ae2376c2e3ee441785af977fcd05bd3b)
-[16:27:15] [Client thread/INFO]: LWJGL Version: 2.9.0
-[16:27:15] [Client thread/ERROR]: Couldn't set icon
-javax.imageio.IIOException: Can't read input file!
-	at java.desktop/javax.imageio.ImageIO.read(ImageIO.java:1310) ~[?:?]
-	at azc.a(SourceFile:500) ~[1.7.jar:?]
-	at azc.Z(SourceFile:340) [1.7.jar:?]
-	at azc.e(SourceFile:689) [1.7.jar:?]
-	at net.minecraft.client.main.Main.main(SourceFile:103) [1.7.jar:?]
-[16:27:16] [Client thread/INFO]: Reloading ResourceManager: Default, §5Terror
-[16:27:55] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
-[16:27:56] [Client thread/INFO]: Created: 256x256 textures/items-atlas
-[16:27:58] [Client thread/INFO]: Stopping!
-[16:27:59] [MCO Availability Checker #1/ERROR]: Couldn't connect to Realms
+[16:32:29] [main/INFO]: Setting user: klopin10
+[16:32:29] [main/INFO]: (Session ID is token:eyJhbGciOiJIUzI1NiJ9.eyJhZ2ciOiJBZHVsdCIsInN1YiI6IjI3OWI4NTc0MjQxMjE0ZTUyYWEzZGVjZDFmMGQ5OTA0IiwieWdndCI6IjI0Yjk4MWY2NjI3NzQ1YWVhNzNhYWM3Y2ZiYjcxYmFlIiwic3ByIjoiYWUyMzc2YzJlM2VlNDQxNzg1YWY5NzdmY2QwNWJkM2IiLCJpc3MiOiJZZ2dkcmFzaWwtQXV0aCIsImV4cCI6MTYzNzY1NDAyNCwiaWF0IjoxNjM3NDgxMjI0fQ.H_NeiGXHn1CCe240U9mYRe0rbx8iBtOk1o24DIjIqL0:ae2376c2e3ee441785af977fcd05bd3b)
+[16:32:31] [Client thread/INFO]: LWJGL Version: 2.9.1
+[16:32:33] [Client thread/ERROR]: Couldn't initialize twitch stream
