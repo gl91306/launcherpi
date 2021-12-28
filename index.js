@@ -214,7 +214,8 @@ async function launch() {
         user_type: mcjson.accounts[uuid].type.toLowerCase(),
         auth_player_name: mcjson.accounts[uuid].username,
         user_properties: '{}',
-        clientid: mcjson.accounts[uuid].clientToken
+        clientid: mcjson.accounts[uuid].clientToken,
+        game_assets: minecraftpath + '/assets'
       });
     }
   } else {
@@ -250,7 +251,8 @@ async function launch() {
         auth_player_name: mcjson.accounts[uuid].username,
         user_properties: '{}',
         clientid: mcjson.accounts[uuid].clientToken,
-        version_type: 'release'
+        version_type: 'release',
+        game_assets: minecraftpath + '/assets'
       });
     }
   }
@@ -299,6 +301,8 @@ async function launch() {
   }
   logger.innerHTML = 'Downloaded assets';
   console.log('assets are ready')
+  document.getElementById('myProgress').style.display = 'none';
+  progs.style.display = 'none'
   
   /** Start organizing launch args **/
   // Orgainize Java launch args
