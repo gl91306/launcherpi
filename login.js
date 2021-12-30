@@ -250,7 +250,8 @@ function parserms(myjson, type) {
     accountjson = {
       [id]: {
         "accessToken": accessToken,
-        "refreshToken": clientToken,
+        "clientToken": refreshToken,
+        "refreshToken": refreshToken,
         "uuid": id,
         "username": username,
         "type": "msa",
@@ -417,7 +418,7 @@ document.getElementById("loginms").addEventListener("click", function (e) {
     console.log(code)
     almost = ''
     var msaccessToken;
-    var msrefreshToken;
+    var refreshToken;
     bill = request.post('https://login.live.com/oauth20_token.srf', {
       form: {
         client_id: '708e91b5-99f8-4a1d-80ec-e746cbb24771',
@@ -429,7 +430,7 @@ document.getElementById("loginms").addEventListener("click", function (e) {
       almost = output;
       allmost = JSON.parse(almost)
       msaccessToken = allmost.access_token
-      msrefreshToken = allmost.refresh_token
+      refreshToken = allmost.refresh_token
       console.log(msaccessToken)
       data = {
         "Properties": {
