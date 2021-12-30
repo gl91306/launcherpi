@@ -12,6 +12,10 @@ var javapath = "/opt/jdk/jdk-17.0.1+12/bin/java";
 var email = "Not logged on";
 var logger = document.getElementById("islog")
 
+Object.size = function(obj) {
+  return Object.keys(obj).length;
+}
+
 async function download(url, filePath) {
   process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
   const proto = !url.charAt(4).localeCompare('s') ? https : http;
@@ -65,7 +69,7 @@ exist(minecraftpath + '/assets')
 console.log(logger.innerHTML)
 const fileName = minecraftpath + "/pilauncher_accounts.json";
 const mcjson = require(fileName);
-if (mcjson.accounts === undefined || mcjson.accounts === "undefined" || mcjson.accounts.length == 0) {
+if (mcjson.accounts === undefined || mcjson.accounts === "undefined" || Object.keys(mcjson.accounts).length == 0) {
 
   logger.innerHTML = "Log in first"
   document.getElementById("launchbutton").disabled = true

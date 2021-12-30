@@ -1,3 +1,7 @@
+Object.size = function(obj) {
+  return Object.keys(obj).length;
+}
+
 storage = window.localStorage
 //storage.setItem('currentuser', 'Undefined')
 
@@ -22,6 +26,8 @@ uuid = localStorage.getItem('currentuser')
 allaccounts = localStorage.getItem('allaccs')
 console.log(uuid)
 if (fs.existsSync(minecraftpath + "/pilauncher_accounts.json")) {
+  document.querySelector("body > span > p:nth-child(5)").style.display = '';
+  document.getElementById('accounts').style.display = '';
   const fileName = minecraftpath + "/pilauncher_accounts.json";
   const mcjson = require(fileName);
   if (mcjson.accounts === undefined || mcjson.accounts === "undefined") {
@@ -29,20 +35,30 @@ if (fs.existsSync(minecraftpath + "/pilauncher_accounts.json")) {
     document.getElementById("logout").disabled = true
     document.getElementById("accounts").style.display = 'none';
     console.log("No accounts in json file")
-  } else if (mcjson.accounts.length == 0) {
+  } else if (Object.keys(mcjson.accounts).length == 0) {
     console.log(mcjson.accounts)
     document.getElementById("logout").disabled = true
+    document.querySelector("body > span > p:nth-child(5)").style.display = 'none';
     document.getElementById("accounts").style.display = 'none';
     console.log("No accounts in json file")
   } else {
+    console.log(mcjson.accounts)
     document.getElementById("logout").disabled = false
     document.getElementById("accounts").style.display = '';
     var allaccounts = JSON.parse(localStorage.getItem('allaccs'));
+    console.log(localStorage.getItem('allaccs'))
+    if (localStorage.getItem('allaccs') == null) {
+      const allaccs = []
+      for (var name in mcjson.accounts) {
+        allaccs.push(name)
+      }
+      console.log(allaccs)
+      localStorage.setItem("allaccs", JSON.stringify(allaccs));
+    }
     console.log(allaccounts)
-    console.log(allaccounts[0])
     for (i in allaccounts) {
       console.log(i)
-      thingy = allaccounts[0]
+      thingy = allaccounts[i]
       var option = document.createElement("option");
       const fileName = minecraftpath + "/pilauncher_accounts.json";
       const mcjson = require(fileName);
@@ -53,14 +69,15 @@ if (fs.existsSync(minecraftpath + "/pilauncher_accounts.json")) {
       option.className = "allaccs"
       option.id = thingy
       document.getElementById("accounts").appendChild(option);
+    }
   }
-} if (uuid === undefined || uuid === null || uuid === "undefined" || uuid === "null" || fs.existsSync(minecraftpath + "/pilauncher_accounts.json") == false) {
+} else if (uuid === undefined || uuid === null || uuid === "undefined" || uuid === "null" || fs.existsSync(minecraftpath + "/pilauncher_accounts.json") == false) {
   document.getElementById("logout").disabled = true
-  //console.log("No account to log out from")
+  document.querySelector("body > span > p:nth-child(5)").style.display = 'none';
+  document.getElementById('accounts').style.display = 'none';
+  console.log("No account to log out from")
 } else if (uuid != undefined || uuid != null) {
-  
-    
-  }
+  console.log('what')
 }
 document.getElementById('accounts').addEventListener('change', function() {
   storage.setItem('currentuser', this.value)
