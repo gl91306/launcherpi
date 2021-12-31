@@ -1,3 +1,7 @@
+Object.size = function(obj) {
+  return Object.keys(obj).length;
+}
+
 storage = window.localStorage
 //storage.setItem('currentuser', 'Undefined')
 
@@ -11,6 +15,8 @@ var pass = document.getElementById("pass")
 const fs = require('fs')
 const os = require("os");
 const webview = require('webview')
+const  session  = require('electron')
+console.log(session)
 const homedir = os.homedir();
 var minecraftpath = homedir + "/.minecraft"
 console.log(minecraftpath)
@@ -22,6 +28,8 @@ uuid = localStorage.getItem('currentuser')
 allaccounts = localStorage.getItem('allaccs')
 console.log(uuid)
 if (fs.existsSync(minecraftpath + "/pilauncher_accounts.json")) {
+  document.querySelector("body > span > p:nth-child(5)").style.display = '';
+  document.getElementById('accounts').style.display = '';
   const fileName = minecraftpath + "/pilauncher_accounts.json";
   const mcjson = require(fileName);
   if (mcjson.accounts === undefined || mcjson.accounts === "undefined") {
@@ -29,20 +37,30 @@ if (fs.existsSync(minecraftpath + "/pilauncher_accounts.json")) {
     document.getElementById("logout").disabled = true
     document.getElementById("accounts").style.display = 'none';
     console.log("No accounts in json file")
-  } else if (mcjson.accounts.length == 0) {
+  } else if (Object.keys(mcjson.accounts).length == 0) {
     console.log(mcjson.accounts)
     document.getElementById("logout").disabled = true
+    document.querySelector("body > span > p:nth-child(5)").style.display = 'none';
     document.getElementById("accounts").style.display = 'none';
     console.log("No accounts in json file")
   } else {
+    console.log(mcjson.accounts)
     document.getElementById("logout").disabled = false
     document.getElementById("accounts").style.display = '';
     var allaccounts = JSON.parse(localStorage.getItem('allaccs'));
+    console.log(localStorage.getItem('allaccs'))
+    if (localStorage.getItem('allaccs') == null) {
+      const allaccs = []
+      for (var name in mcjson.accounts) {
+        allaccs.push(name)
+      }
+      console.log(allaccs)
+      localStorage.setItem("allaccs", JSON.stringify(allaccs));
+    }
     console.log(allaccounts)
-    console.log(allaccounts[0])
     for (i in allaccounts) {
       console.log(i)
-      thingy = allaccounts[0]
+      thingy = allaccounts[i]
       var option = document.createElement("option");
       const fileName = minecraftpath + "/pilauncher_accounts.json";
       const mcjson = require(fileName);
@@ -53,14 +71,15 @@ if (fs.existsSync(minecraftpath + "/pilauncher_accounts.json")) {
       option.className = "allaccs"
       option.id = thingy
       document.getElementById("accounts").appendChild(option);
+    }
   }
-} if (uuid === undefined || uuid === null || uuid === "undefined" || uuid === "null" || fs.existsSync(minecraftpath + "/pilauncher_accounts.json") == false) {
+} else if (uuid === undefined || uuid === null || uuid === "undefined" || uuid === "null" || fs.existsSync(minecraftpath + "/pilauncher_accounts.json") == false) {
   document.getElementById("logout").disabled = true
-  //console.log("No account to log out from")
+  document.querySelector("body > span > p:nth-child(5)").style.display = 'none';
+  document.getElementById('accounts').style.display = 'none';
+  console.log("No account to log out from")
 } else if (uuid != undefined || uuid != null) {
-  
-    
-  }
+  console.log('what')
 }
 document.getElementById('accounts').addEventListener('change', function() {
   storage.setItem('currentuser', this.value)
@@ -233,7 +252,8 @@ function parserms(myjson, type) {
     accountjson = {
       [id]: {
         "accessToken": accessToken,
-        "refreshToken": clientToken,
+        "clientToken": refreshToken,
+        "refreshToken": refreshToken,
         "uuid": id,
         "username": username,
         "type": "msa",
@@ -243,10 +263,8 @@ function parserms(myjson, type) {
     console.log(accountjson)
     const fileName = minecraftpath + "/pilauncher_accounts.json";
     const mcjson = require(fileName);
-    console.log(mcjson.accounts[myjson.selectedProfile.id])
-    console.log(myjson.selectedProfile.id)
     var allaccs = [];
-    if (mcjson.accounts[myjson.selectedProfile.id] === undefined || mcjson.accounts[myjson.selectedProfile.id].uuid != myjson.selectedProfile.id) {
+    if (mcjson.accounts[id] === undefined || mcjson.accounts[id].uuid != id) {
       mcjson.accounts = accountjson
       fs.writeFile(fileName, JSON.stringify(mcjson, null, 2), function writeJSON(err) {
         if (err) return console.log(err);
@@ -364,151 +382,132 @@ document.getElementById("loginms").addEventListener("click", function (e) {
   console.log(email.value)
 
   if (!(fs.existsSync(minecraftpath + "/pilauncher_accounts.json"))) {
-    console.log(minecraftpath + "/pilauncher_accounts.json","doesnt exist!")
-    createauthfile(minecraftpath + "/pilauncher_accounts.json")
-    console.log(minecraftpath + "/pilauncher_accounts.json","exists!")
-    window.open('https://login.live.com/oauth20_authorize.srf?client_id=708e91b5-99f8-4a1d-80ec-e746cbb24771&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A12782%2Fcode&scope=XboxLive.signin%20offline_access&state=NOT_NEEDED', '_blank', 'frame=false,nodeIntegration=no')
-    // https://login.live.com/oauth20_authorize.srf?client_id=708e91b5-99f8-4a1d-80ec-e746cbb24771&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A12782%2Fcode&scope=XboxLive.signin%20offline_access&state=NOT_NEEDED
-    //"https://login.live.com/oauth20_authorize.srf?client_id=708e91b5-99f8-4a1d-80ec-e746cbb24771&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A12782%2Fcode&scope=XboxLive.signin%20offline_access&state=NOT_NEEDED",
-
-    /**sendreq('POST', 'authserver.mojang.com', '/authenticate', {
-      'Content-Type': 'application/json'
-    }, {
-      "agent": {                              // defaults to Minecraft
-          "name": "Minecraft",                // For Mojang's other game Scrolls, "Scrolls" should be used
-          "version": 1                        // This number might be increased
-                                              // by the vanilla client in the future
-      },
-      "username": email.value,      // Can be an email address or player name for
-                                              // unmigrated accounts
-      "password": pass.value,
-      "requestUser": true                     // optional; default: false; true adds the user object to the response
-    }) */
-  } else if (fs.existsSync(minecraftpath + "/pilauncher_accounts.json")) {
-    console.log(minecraftpath + "/pilauncher_accounts.json","exists!")
-    mywin = window.open('https://login.live.com/oauth20_authorize.srf?client_id=708e91b5-99f8-4a1d-80ec-e746cbb24771&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A12782%2Fcode&scope=XboxLive.signin%20offline_access&state=NOT_NEEDED', '_blank', 'frame=false,nodeIntegration=no')
-    console.log(mywin)
-    console.log(mywin.location.href)
-    while (!(mywin.location.href.includes('http://localhost:12782/code?code='))) {
-      //console.log(mywin.location.href)
+    fs.mkdirSync(minecraftpath + "/pilauncher_accounts.json", { recursive: true });
+  }
+  console.log(minecraftpath + "/pilauncher_accounts.json","exists!")
+  mywin = window.open('https://login.live.com/oauth20_authorize.srf?client_id=708e91b5-99f8-4a1d-80ec-e746cbb24771&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A12782%2Fcode&scope=XboxLive.signin%20offline_access&state=NOT_NEEDED', '_blank', 'frame=false,nodeIntegration=no')
+  console.log(mywin)
+  //mywin.eval(document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); }))
+  console.log(mywin.location.href)
+  while (!(mywin.location.href.includes('http://localhost:12782/code?code='))) {
+    //console.log(mywin.location.href)
+  }
+  console.log(mywin.location.href)
+  result = mywin.location.href.slice(33)
+  console.log(result)
+  code = result.split("&")[0]
+  mywin.close()
+  console.log(code)
+  almost = ''
+  var msaccessToken;
+  var refreshToken;
+  bill = request.post('https://login.live.com/oauth20_token.srf', {
+    form: {
+      client_id: '708e91b5-99f8-4a1d-80ec-e746cbb24771',
+      redirect_uri: 'http://localhost:12782/code',
+      code: code,
+      grant_type: 'authorization_code'
     }
-    console.log(mywin.location.href)
-    result = mywin.location.href.slice(33)
-    console.log(result)
-    code = result.split("&")[0]
-    mywin.close()
-    console.log(code)
-    almost = ''
-    var msaccessToken;
-    var msrefreshToken;
-    bill = request.post('https://login.live.com/oauth20_token.srf', {
-      form: {
-        client_id: '708e91b5-99f8-4a1d-80ec-e746cbb24771',
-        redirect_uri: 'http://localhost:12782/code',
-        code: code,
-        grant_type: 'authorization_code'
-      }
-    }).then(function (output) {
-      almost = output;
-      allmost = JSON.parse(almost)
-      msaccessToken = allmost.access_token
-      msrefreshToken = allmost.refresh_token
-      console.log(msaccessToken)
-      data = {
+  }).then(function (output) {
+    almost = output;
+    allmost = JSON.parse(almost)
+    msaccessToken = allmost.access_token
+    refreshToken = allmost.refresh_token
+    console.log(msaccessToken)
+    data = {
+      "Properties": {
+          "AuthMethod": "RPS",
+          "SiteName": "user.auth.xboxlive.com",
+          "RpsTicket": "d=" + msaccessToken // your access token from step 2 here
+      },
+      "RelyingParty": "http://auth.xboxlive.com",
+      "TokenType": "JWT"
+    }
+    fetch('https://user.auth.xboxlive.com/user/authenticate', {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(data),
+    }).then(response => response.json())
+    .then(data => {
+      xboxToken = data.Token
+      xboxUHS = data.DisplayClaims.xui[0].uhs
+      console.log(xboxToken)
+      console.log(xboxUHS)
+      data1 = {
         "Properties": {
-            "AuthMethod": "RPS",
-            "SiteName": "user.auth.xboxlive.com",
-            "RpsTicket": "d=" + msaccessToken // your access token from step 2 here
+            "SandboxId": "RETAIL",
+            "UserTokens": [
+                xboxToken // from above
+            ]
         },
-        "RelyingParty": "http://auth.xboxlive.com",
+        "RelyingParty": "rp://api.minecraftservices.com/",
         "TokenType": "JWT"
       }
-      fetch('https://user.auth.xboxlive.com/user/authenticate', {
+      fetch('https://xsts.auth.xboxlive.com/xsts/authorize', {
         method: 'POST', // or 'PUT'
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(data1),
       }).then(response => response.json())
       .then(data => {
-        xboxToken = data.Token
-        xboxUHS = data.DisplayClaims.xui[0].uhs
-        console.log(xboxToken)
-        console.log(xboxUHS)
-        data1 = {
-          "Properties": {
-              "SandboxId": "RETAIL",
-              "UserTokens": [
-                  xboxToken // from above
-              ]
-          },
-          "RelyingParty": "rp://api.minecraftservices.com/",
-          "TokenType": "JWT"
+        console.log(data)
+        xstsToken = data.Token
+        console.log(xstsToken)
+        data2 = {
+          "identityToken": "XBL3.0 x=" + xboxUHS + ";" + xstsToken
         }
-        fetch('https://xsts.auth.xboxlive.com/xsts/authorize', {
+        fetch('https://api.minecraftservices.com/authentication/login_with_xbox', {
           method: 'POST', // or 'PUT'
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
           },
-          body: JSON.stringify(data1),
+          body: JSON.stringify(data2),
         }).then(response => response.json())
         .then(data => {
           console.log(data)
-          xstsToken = data.Token
-          console.log(xstsToken)
-          data2 = {
-            "identityToken": "XBL3.0 x=" + xboxUHS + ";" + xstsToken
-          }
-          fetch('https://api.minecraftservices.com/authentication/login_with_xbox', {
-            method: 'POST', // or 'PUT'
+          accessToken = data.access_token
+          console.log(accessToken)
+          fetch('https://api.minecraftservices.com/entitlements/mcstore', {
+            method: 'GET', // or 'PUT'
             headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-            },
-            body: JSON.stringify(data2),
+              'Authorization': 'Bearer ' + accessToken
+            }
           }).then(response => response.json())
           .then(data => {
             console.log(data)
-            accessToken = data.access_token
-            console.log(accessToken)
-            fetch('https://api.minecraftservices.com/entitlements/mcstore', {
-              method: 'GET', // or 'PUT'
-              headers: {
-                'Authorization': 'Bearer ' + accessToken
-              }
-            }).then(response => response.json())
-            .then(data => {
-              console.log(data)
-              if (data.items.length == 0) {
-                console.log("no minecraft bought")
-                document.getElementById('output').innerHTML = "No Minecraft Account Associated with this Account!"
-              } else if (data.items.length != 0) {
-                document.getElementById('output').innerHTML = "Login Verified!"
-                console.log("YAYY! MINECRAft")
-                fetch('https://api.minecraftservices.com/minecraft/profile', {
-                  method: 'GET', // or 'PUT'
-                  headers: {
-                    'Authorization': 'Bearer ' + accessToken
-                  }
-                }).then(response => response.json)
-                .then(data => {
-                  console.log(data)
-                  msparserjsdata = {
-                    'acessToken': accessToken,
-                    'refreshToken': refreshToken,
-                    'uuid': data.id,
-                    'username': data.name,
-                    'xuid': xboxUHS
-                  }
-                  parserms(msparserjsdata, 'Microsoft')
-                })
-              }
-            })
+            if (data.items.length == 0) {
+              console.log("no minecraft bought")
+              document.getElementById('output').innerHTML = "No Minecraft Account Associated with this Account!"
+            } else if (data.items.length != 0) {
+              document.getElementById('output').innerHTML = "Login Verified!"
+              console.log("YAYY! MINECRAft")
+              fetch('https://api.minecraftservices.com/minecraft/profile', {
+                method: 'GET', // or 'PUT'
+                headers: {
+                  'Authorization': 'Bearer ' + accessToken
+                }
+              }).then(response => response.json)
+              .then(data => {
+                console.log(data)
+                msparserjsdata = {
+                  'acessToken': accessToken,
+                  'refreshToken': refreshToken,
+                  'uuid': data.id,
+                  'username': data.name,
+                  'xuid': xboxUHS
+                }
+                parserms(msparserjsdata, 'Microsoft')
+              })
+            }
           })
         })
       })
     })
-  }
+  })
 });
