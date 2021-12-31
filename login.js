@@ -277,7 +277,7 @@ function parserms(myjson, type) {
       console.log(allaccs)
       localStorage.setItem("allaccs", JSON.stringify(allaccs));
       document.getElementById("logout").disabled = false
-    } else if (mcjson.accounts[myjson.selectedProfile.id].uuid == myjson.selectedProfile.id) {
+    } else if (mcjson.accounts[id].uuid == id) {
       console.log("account aldready logged in!")
       mcjson.accounts = accountjson
       fs.writeFile(fileName, JSON.stringify(mcjson, null, 2), function writeJSON(err) {
@@ -292,7 +292,7 @@ function parserms(myjson, type) {
       localStorage.setItem("allaccs", JSON.stringify(allaccs));
       output.innerHTML = "Account aldready logged on!"
     }
-    storage.setItem('currentuser', myjson.selectedProfile.id)
+    storage.setItem('currentuser', id)
   }
 }
 
