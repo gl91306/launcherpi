@@ -93,7 +93,7 @@ function createauthfile(path) {
   var dictstring = JSON.stringify(defaultdict, null, 2);
   fs.writeFile(path, dictstring, function(err, result) {
     if(err) console.log('error', err);
-})
+  })
 }
 
 function sendreq(method, hostname, path, headers, data) {
@@ -382,7 +382,7 @@ document.getElementById("loginms").addEventListener("click", function (e) {
   console.log(email.value)
 
   if (!(fs.existsSync(minecraftpath + "/pilauncher_accounts.json"))) {
-    fs.mkdirSync(minecraftpath + "/pilauncher_accounts.json", { recursive: true });
+    createauthfile(minecraftpath + "/pilauncher_accounts.json")
   }
   console.log(minecraftpath + "/pilauncher_accounts.json","exists!")
   mywin = window.open('https://login.live.com/oauth20_authorize.srf?client_id=000000004C12AE6F&response_type=code&redirect_uri=https://login.live.com/oauth20_desktop.srf&scope=XboxLive.signin%20offline_access&state=NOT_NEEDED', '_blank', 'frame=false,nodeIntegration=no')
