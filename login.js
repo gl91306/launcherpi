@@ -49,7 +49,7 @@ if (fs.existsSync(minecraftpath + "/pilauncher_accounts.json")) {
     document.getElementById("accounts").style.display = '';
     var allaccounts = JSON.parse(localStorage.getItem('allaccs'));
     console.log(localStorage.getItem('allaccs'))
-    if (localStorage.getItem('allaccs') == null) {
+    if (localStorage.getItem('allaccs') == null || localStorage.getItem('allaccs') == undefined) {
       const allaccs = []
       for (var name in mcjson.accounts) {
         allaccs.push(name)
@@ -252,8 +252,6 @@ function parserms(myjson, type) {
     accountjson = {
       [id]: {
         "accessToken": accessToken,
-        "clientToken": refreshToken,
-        "refreshToken": refreshToken,
         "uuid": id,
         "username": username,
         "type": "msa",
