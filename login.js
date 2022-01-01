@@ -245,6 +245,7 @@ function parser(myjson, type) {
 
 function parserms(myjson, type) {
   if (type == "Microsoft") {
+    console.log(myjson)
     accessToken = myjson.accessToken
     refreshToken = myjson.refreshToken
     id = myjson.uuid
@@ -495,14 +496,14 @@ document.getElementById("loginms").addEventListener("click", function (e) {
                 headers: {
                   'Authorization': 'Bearer ' + accessToken
                 }
-              }).then(response => response.json)
+              }).then(response => response.json())
               .then(data => {
                 console.log(data)
                 console.log('---------------------')
                 console.log(data.id)
                 console.log(data['name'])
                 msparserjsdata = {
-                  'acessToken': accessToken,
+                  'accessToken': accessToken,
                   'refreshToken': refreshToken,
                   'uuid': data.id,
                   'username': data['name'],
