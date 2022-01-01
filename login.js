@@ -498,6 +498,9 @@ document.getElementById("loginms").addEventListener("click", function (e) {
               }).then(response => response.json)
               .then(data => {
                 console.log(data)
+                console.log('---------------------')
+                console.log(data.id)
+                console.log(data['name'])
                 msparserjsdata = {
                   'acessToken': accessToken,
                   'refreshToken': refreshToken,
