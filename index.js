@@ -202,7 +202,7 @@ async function launch() {
         user_type: mcjson.accounts[uuid].type.toLowerCase(),
         auth_player_name: mcjson.accounts[uuid].username,
         user_properties: '{}',
-        clientid: mcjson.accounts[uuid].clientToken,
+        clientid: '708e91b5-99f8-4a1d-80ec-e746cbb24771',
         auth_xuid: mcjson.accounts[uuid].xuid
       });
     } else if (parseInt(selectedversionthing.split('-forge')[0].split("1.")[1]) < 13) {
@@ -218,7 +218,7 @@ async function launch() {
         user_type: mcjson.accounts[uuid].type.toLowerCase(),
         auth_player_name: mcjson.accounts[uuid].username,
         user_properties: '{}',
-        clientid: mcjson.accounts[uuid].clientToken,
+        clientid: '708e91b5-99f8-4a1d-80ec-e746cbb24771',
         game_assets: minecraftpath + '/assets'
       });
     }
@@ -237,7 +237,7 @@ async function launch() {
         user_type: mcjson.accounts[uuid].type.toLowerCase(),
         auth_player_name: mcjson.accounts[uuid].username,
         user_properties: '{}',
-        clientid: mcjson.accounts[uuid].clientToken,
+        clientid: '708e91b5-99f8-4a1d-80ec-e746cbb24771',
         version_type: 'release',
         auth_xuid: mcjson.accounts[uuid].xuid
       });
@@ -254,7 +254,7 @@ async function launch() {
         user_type: mcjson.accounts[uuid].type.toLowerCase(),
         auth_player_name: mcjson.accounts[uuid].username,
         user_properties: '{}',
-        clientid: mcjson.accounts[uuid].clientToken,
+        clientid: '708e91b5-99f8-4a1d-80ec-e746cbb24771',
         version_type: 'release',
         game_assets: minecraftpath + '/assets'
       });

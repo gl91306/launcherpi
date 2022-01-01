@@ -385,15 +385,15 @@ document.getElementById("loginms").addEventListener("click", function (e) {
     fs.mkdirSync(minecraftpath + "/pilauncher_accounts.json", { recursive: true });
   }
   console.log(minecraftpath + "/pilauncher_accounts.json","exists!")
-  mywin = window.open('https://login.live.com/oauth20_authorize.srf?client_id=708e91b5-99f8-4a1d-80ec-e746cbb24771&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A12782%2Fcode&scope=XboxLive.signin%20offline_access&state=NOT_NEEDED', '_blank', 'frame=false,nodeIntegration=no')
+  mywin = window.open('https://login.live.com/oauth20_authorize.srf?client_id=000000004C12AE6F&response_type=code&redirect_uri=https://login.live.com/oauth20_desktop.srf&scope=XboxLive.signin%20offline_access&state=NOT_NEEDED', '_blank', 'frame=false,nodeIntegration=no')
   console.log(mywin)
   //mywin.eval(document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); }))
   console.log(mywin.location.href)
-  while (!(mywin.location.href.includes('http://localhost:12782/code?code='))) {
+  while (!(mywin.location.href.includes('https://login.live.com/oauth20_desktop.srf?code='))) {
     //console.log(mywin.location.href)
   }
   console.log(mywin.location.href)
-  result = mywin.location.href.slice(33)
+  result = mywin.location.href.slice(48)
   console.log(result)
   code = result.split("&")[0]
   mywin.close()
@@ -403,8 +403,8 @@ document.getElementById("loginms").addEventListener("click", function (e) {
   var refreshToken;
   bill = request.post('https://login.live.com/oauth20_token.srf', {
     form: {
-      client_id: '708e91b5-99f8-4a1d-80ec-e746cbb24771',
-      redirect_uri: 'http://localhost:12782/code',
+      client_id: '000000004C12AE6F',
+      redirect_uri: 'https://login.live.com/oauth20_desktop.srf',
       code: code,
       grant_type: 'authorization_code'
     }
@@ -412,7 +412,8 @@ document.getElementById("loginms").addEventListener("click", function (e) {
     almost = output;
     allmost = JSON.parse(almost)
     msaccessToken = allmost.access_token
-    refreshToken = allmost.refresh_token
+    refreshToken1 = allmost.refresh_token
+    console.log(refreshToken1)
     console.log(msaccessToken)
     data = {
       "Properties": {
@@ -432,6 +433,7 @@ document.getElementById("loginms").addEventListener("click", function (e) {
       body: JSON.stringify(data),
     }).then(response => response.json())
     .then(data => {
+      var refreshToken2 = refreshToken1
       xboxToken = data.Token
       xboxUHS = data.DisplayClaims.xui[0].uhs
       console.log(xboxToken)
@@ -455,6 +457,7 @@ document.getElementById("loginms").addEventListener("click", function (e) {
         body: JSON.stringify(data1),
       }).then(response => response.json())
       .then(data => {
+        var refreshToken3 = refreshToken2
         console.log(data)
         xstsToken = data.Token
         console.log(xstsToken)
@@ -470,9 +473,11 @@ document.getElementById("loginms").addEventListener("click", function (e) {
           body: JSON.stringify(data2),
         }).then(response => response.json())
         .then(data => {
+          var refreshToken = refreshToken3
           console.log(data)
           accessToken = data.access_token
           console.log(accessToken)
+          console.log(refreshToken)
           fetch('https://api.minecraftservices.com/entitlements/mcstore', {
             method: 'GET', // or 'PUT'
             headers: {
@@ -499,7 +504,7 @@ document.getElementById("loginms").addEventListener("click", function (e) {
                   'acessToken': accessToken,
                   'refreshToken': refreshToken,
                   'uuid': data.id,
-                  'username': data.name,
+                  'username': data['name'],
                   'xuid': xboxUHS
                 }
                 parserms(msparserjsdata, 'Microsoft')
