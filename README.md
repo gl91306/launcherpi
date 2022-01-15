@@ -13,6 +13,7 @@ Things that dont work:
  - Other non Forge/Fabric mod loaders and their mods
  - Standalone mods (eg LabyMod)
  - A settings menu (You cant change things like java path, args, ram, etc)
+ - Multiple accounts (I made a system for these, but I dont have more than 1 accounts so i cant check)
 
 Things that are untested:
- - Multiple accounts (I made a system for these, but I dont have more than 1 accounts so i cant check)
+ - Nothing
