@@ -14,6 +14,7 @@ Things that dont work:
  - Standalone mods (eg LabyMod)
  - A settings menu (You cant change things like java path, args, ram, etc)
  - Multiple accounts (I made a system for these, but I dont have more than 1 accounts so i cant check)
+ - Using a diffrent microsoft account to log in (this is due to the cookies being stored. its gonna be a hard fix ;--;)
 
 Things that are untested:
  - Nothing
