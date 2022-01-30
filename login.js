@@ -15,7 +15,7 @@ var pass = document.getElementById("pass")
 const fs = require('fs')
 const os = require("os");
 const webview = require('webview')
-const  session  = require('electron')
+const session = require('electron').remote.session;
 console.log(session)
 const homedir = os.homedir();
 var minecraftpath = homedir + "/.minecraft"
@@ -23,6 +23,7 @@ console.log(minecraftpath)
 var correctlog
 const https = require('https');
 const { stringify } = require('querystring');
+const uuidv1 = require('uuid/v1');
 
 uuid = localStorage.getItem('currentuser')
 allaccounts = localStorage.getItem('allaccs')
@@ -377,17 +378,24 @@ document.getElementById("logout").addEventListener("click", function (e) {
   }
 });
 
-document.getElementById("loginms").addEventListener("click", function (e) {
+document.getElementById("loginms").addEventListener("click", async function (e) {
   console.log(email.value)
 
   if (!(fs.existsSync(minecraftpath + "/pilauncher_accounts.json"))) {
     createauthfile(minecraftpath + "/pilauncher_accounts.json")
   }
   console.log(minecraftpath + "/pilauncher_accounts.json","exists!")
+  random = uuidv1()
+  await session.defaultSession.clearStorageData({
+    // without set origin options
+    origin: "login.live.com",
+    storages: ['cookies', 'caches', 'indexdb']
+  })
   mywin = window.open('https://login.live.com/oauth20_authorize.srf?client_id=000000004C12AE6F&response_type=code&redirect_uri=https://login.live.com/oauth20_desktop.srf&scope=XboxLive.signin%20offline_access&state=NOT_NEEDED', '_blank', 'frame=false,nodeIntegration=no')
   console.log(mywin)
   //mywin.eval(document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); }))
   console.log(mywin.location.href)
+
   while (!(mywin.location.href.includes('https://login.live.com/oauth20_desktop.srf?code='))) {
     //console.log(mywin.location.href)
   }

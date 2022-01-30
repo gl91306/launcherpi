@@ -21,6 +21,7 @@
     "normalize-url": "^4.5.0",
     "request": "^2.88.2",
     "request-promise": "^4.2.6",
+    "uuid": "^3.4.0",
     "webview": "^1.0.0",
     "yggdrasil": "^1.6.1"
   }

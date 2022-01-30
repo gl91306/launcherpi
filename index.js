@@ -76,6 +76,7 @@ if (mcjson.accounts === undefined || mcjson.accounts === "undefined" || Object.k
 } else {
   logger.innerHTML = "Logged on as "
   document.getElementById("launchbutton").disabled = false
+  localStorage.setItem('currentuser', Object.keys(mcjson.accounts)[0])
   uuid = localStorage.getItem('currentuser')
   console.log(uuid)
   username = mcjson.accounts[uuid].username
