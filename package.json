@@ -17,12 +17,17 @@
     "electron": "^12.2.3",
     "electron-browser-storage": "^1.0.7",
     "electron-updater": "^4.3.9",
+    "extract-zip": "^2.0.1",
+    "follow-redirects": "^1.15.1",
     "nexpect": "^0.6.0",
     "normalize-url": "^4.5.0",
+    "path": "^0.12.7",
     "request": "^2.88.2",
     "request-promise": "^4.2.6",
+    "tar.gz": "^1.0.7",
     "uuid": "^3.4.0",
     "webview": "^1.0.0",
+    "yauzl": "^2.10.0",
     "yggdrasil": "^1.6.1"
   }
 }

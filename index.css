@@ -41,11 +41,13 @@ a {
 #myProgress {
   width: 100%;
   background-color: grey;
-  border-radius: 25px;
+  border-radius: 15px;
+  display: none;
 }
 #myBar {
   width: 1%;
   height: 30px;
   background-color: green;
-  border-radius: 25px;
+  border-radius: 15px;
+  display: none;
 }
