@@ -846,7 +846,8 @@ class MinecraftVersion {
   }
 
   getFullLaunchPath() {
-    var substitutor = this.createArgumentsSubstitutor(onedotsixteenprofile);
+    var profile = new Profile("Default", "temp_iconpath", this.id);
+    var substitutor = this.createArgumentsSubstitutor(profile);
 
     var fullArgPath = "";
     var javaLibArgs = this.resolve().addArguments("jvm", settings.featureMatcher, this.resolve().builder, substitutor);
