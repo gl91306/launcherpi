@@ -117,6 +117,7 @@ if (mcjson.accounts === undefined || mcjson.accounts === "undefined" || Object.k
 
   logger.innerHTML = "Log in first"
   document.getElementById("launchbutton").disabled = true
+  console.log("log in first")
 } else {
   logger.innerHTML = "Logged on as "
   document.getElementById("launchbutton").disabled = false
@@ -963,6 +964,10 @@ async function launch() {
   exist(minecraftpath + '/assets/indexes')
   exist(minecraftpath + '/assets/objects')
   selectedversionthing = document.getElementById('subject').options[document.getElementById('subject').selectedIndex].text
+  if (selectedversionthing == "Installed:" || selectedversionthing == "") {
+    logger.innerHTML = 'Please choose a version';
+    return;
+  }
   exist(minecraftpath + '/versions/' + selectedversionthing)
   var minecraftjson
   if (!(fs.existsSync(minecraftpath + '/versions/' + selectedversionthing + '/' + selectedversionthing + '.json'))) {

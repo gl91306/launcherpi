@@ -4,23 +4,31 @@
     <meta charset="UTF-8">
     <title>Hello World!</title>
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' 'unsafe-eval';" />
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body style="background: white;">
     <span>
-        <h1>Pi-Launcher</h1>
-        <div id="exit"></div>
-        <br>
-        <br>
-        <p>Select version</p>
-        <select name="subject" id="subject">
+      <h1 style="font-family: minecraft; font-size: 3em;">Launcherpi</h1>
+      <div id="exit"></div>
+      <div id="imageslideshow">
+        <!-- add buttons and slideshow bacgoudn -->
+        <img src="images/temp.webp" alt="temp minecraft image" class="imageslideshowimage">
+      </div>
+      <div id="launchbar">
+        <div id="versionbar">
+          <p style="font-size: 1.3em; margin-top: 10px; margin-bottom: 10px; text-shadow: 1px 1px green;">Select version</p>
+          <select name="subject" id="subject">
             <option value="" selected="selected">Installed: </option>
-        </select>
-        <button onclick="launch()" id="launchbutton">Launch</button>
-        <p id="islog">Checking login status...</p>
-        <div id="myProgress">
-            <div id="myBar"></div>
+          </select>
         </div>
+        <div id="launcherbar">
+          <button id="launchbutton" onclick="launch()">Launch</button>
+          <p id="islog">Checking login status...</p>
+          <div id="myProgress">
+            <div id="myBar"></div>
+          </div>
+        </div>
+      </div>
     </span>
     <a href="login.html">LOGIN</a>
     <script src="index.js"></script>

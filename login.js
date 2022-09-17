@@ -29,7 +29,7 @@ uuid = localStorage.getItem('currentuser')
 allaccounts = localStorage.getItem('allaccs')
 console.log(uuid)
 if (fs.existsSync(minecraftpath + "/pilauncher_accounts.json")) {
-  document.querySelector("body > span > p:nth-child(5)").style.display = '';
+  document.getElementById('chooseanacc').style.display = '';
   document.getElementById('accounts').style.display = '';
   const fileName = minecraftpath + "/pilauncher_accounts.json";
   const mcjson = require(fileName);

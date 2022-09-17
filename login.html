@@ -4,27 +4,28 @@
     <meta charset="UTF-8">
     <title>Hello World!</title>
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body style="background: white;">
     <span>
-        <h1>Login</h1>
+        <h1 style="font-family: minecraft; margin-top: 30px;">Login</h1>
         <div id="exit"></div>
         <br>
-        <br>
-        <p>Choose an account:</p>
+        <p id="chooseanacc">Choose an account:</p>
         <select name="accounts" id="accounts">
         </select>
-        <p>Email</p>
-        <input type="text" value="Email" id="email">
-        <p>Password</p>
-        <input type="password" value="Password" id="pass">
-        <br>
-        <button onclick="" id="login">Login</button>
-        <button onclick="" id="logout">Logout</button>
-        <br>
-        <button onclick="" id="loginms">Login with MS</button>
-        <p id="output"></p>
+        <div id="logindiv">
+            <p>Email</p>
+            <input type="text" value="Email" id="email">
+            <p>Password</p>
+            <input type="password" value="Password" id="pass">
+            <br>
+            <button onclick="" id="login" class="auth-button">Login</button>
+            <button onclick="" id="logout" class="auth-button">Logout</button>
+            <br>
+            <button onclick="" id="loginms" class="auth-button">Login with MS</button>
+            <p id="output"></p>
+        </div>
     </span>
     <a href="index.html">LAUNCHER</a>
     <br>

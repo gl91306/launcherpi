@@ -1,4 +1,4 @@
-# ![alt text](https://github.com/gl91306/launcherpi/blob/main/icon.png?raw=true) launcherpi 
+# ![alt text](https://github.com/gl91306/launcherpi/blob/main/images/icon.png?raw=true) launcherpi 
 A Minecraft Launcher for Raspberry Pi computers.
 # ALSO BIG THANKS TO KLOPIX FOR MS ACCOUNT TESTINGGG
 # WE NEED TESTERS FOR FABRIC AND LABYMOD. IF YOU WANT TO TEST TRY USING THESE MODLOADERS WITH LAUNCHERPI AND OPEN AN ISSUE TO TELL ME IF IT WORKS OR NOT

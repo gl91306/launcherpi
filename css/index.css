@@ -1,0 +1,140 @@
+/** fonts */
+@font-face {
+    font-family: minecraft;
+    src: url(fonts/minecraft.ttf);
+}
+@font-face {
+    font-family: minecraftsmall;
+    src: url(fonts/minecraftsmall.otf);
+}
+
+/** actual css */
+#exit {
+    background-color: aqua;
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+h1 {
+    text-align: center;
+}
+p {
+    text-align: center;
+    font-family: minecraftsmall;
+}
+label {
+    text-align: center;
+}
+select {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 130px;
+}
+button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    font-family: minecraft;
+}
+
+.auth-button {
+    font-size: 16px;
+    margin-top: 7px;
+    padding: 5px 15px;
+    border-radius: 15px;
+    box-shadow: 0 9px #494697;
+    background-color: #0eaeae;
+}
+
+.auth-button:hover {background-color: #50af53}
+
+.auth-button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #494697;
+    transform: translateY(4px);
+}
+
+#launchbutton {
+    margin-top: 5px;
+    padding: 15px 25px;
+    font-size: 24px;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+    color: #fff;
+    background-color: #6bdb6f;
+}
+
+#launchbutton:hover {background-color: #50af53}
+
+#launchbutton:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+input {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+a {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+#myProgress {
+    width: 100%;
+    background-color: grey;
+    border-radius: 15px;
+    display: none;
+}
+#myBar {
+    width: 1%;
+    height: 30px;
+    background-color: green;
+    border-radius: 15px;
+    display: none;
+}
+.imageslideshowimage {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+}
+#launchbar {
+    display: flex;
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+#versionbar {
+    width: 30%;
+    background-color: #9999ff;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+#launcherbar {
+    width: 70%;
+    background-color: #e17070;
+    border-radius: 15px;
+    margin-left: 15px;
+}
+#logindiv {
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+    padding: 10px;
+    background-color: #92f986;
+    margin-top: 5px;
+    border-radius: 20px;
+}
