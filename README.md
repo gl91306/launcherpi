@@ -22,6 +22,9 @@ Things that are untested:
 
 How to install
  - Make sure npm and node are installed
- - Git clone the repo
- - Open the folder in terminal and type ```npm i```
- - After it installs the dependencies, type ```npm start```
+```
+git clone https://github.com/gl91306/launcherpi.git
+cd launcherpi
+npm i
+npm start
+```
