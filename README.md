@@ -19,16 +19,20 @@
 - Realms (until we can figure out the --session token realms and sometimes servers do not work)
 
 ## Working on:
- - A settings menu (You cant change things like java path, args, ram, etc)
+ - A settings menu (Allow you to change things like java path, args, ram, etc)
 
 ## Things that are untested:
  - Fabric (and all its included mods)
  - Other non Forge/Fabric mod loaders and their mods
  - Standalone mods (eg LabyMod)
+
 we need testers, if you can please open an issue and document what you tried and if it worked
 
-How to install
- - Make sure npm and node are installed
+# How to install
+You can download the built client from the releases page, or you can clone the git repo.
+
+If you are cloning the repo, please have nodejs v18 installed (We reccomend using nvm)
+
 ```
 git clone https://github.com/gl91306/launcherpi.git
 cd launcherpi
