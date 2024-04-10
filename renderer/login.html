@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html class="bg-login">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login to LauncherPi</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="fa/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/mc-skin-vewer.css">
+</head>
+
+<body>
+    <div class="main-content">
+        <h1 class="mc-font text-center">Login</h1>
+        <br>
+        <div class="notif-container font-workSans" style="max-width: 529px;">
+            <div id="notif" class="notif error" style="display: block;">
+                <strong id="notif-title" style="margin-right: 10px;"><i class="fa-solid fa-triangle-exclamation"></i> Mojang accounts can no longer be used to sign in</strong>
+                <p id="notif-message">Microsoft has removed logging in with Mojang accounts in favor of Microsoft accounts, for more info click here: <a href="https://aka.ms/LauncherPostMigration" class="link-overlay" target="_blank">More Info <i class="fa-solid fa-arrow-up-right-from-square"></i></a></p>
+            </div>
+        </div>
+        <br>
+        <div id="logindiv" class="AccountDiv text-center">
+            <h3 id="chooseanacc" class="mc-font-small text-center" style="margin-bottom: -5px;">Choose an account:</h3>
+            <hr class="hr-h-2 hr-bm-2">
+            <div id="accounts" style="display: none;"></div>
+            <hr>
+            <button id="loginms" class="btn auth-button">Login with MS <i class="fa-brands fa-microsoft ms-logo-fa"></i></button>
+            <p id="output"></p>
+        </div>
+    </div>
+    <script src="js/login.js"></script>
+</body>
+
+</html>

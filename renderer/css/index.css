@@ -1,0 +1,350 @@
+:root {
+    --shadow-color: 278deg 29% 61%;
+    --shadow-elevation-low:
+        0.4px 1px 1.2px hsl(var(--shadow-color) / 0.29),
+        0.7px 1.5px 1.8px -1.3px hsl(var(--shadow-color) / 0.29),
+        1.6px 3.5px 4.3px -2.5px hsl(var(--shadow-color) / 0.29);
+    --shadow-elevation-medium:
+        0.4px 1px 1.2px hsl(var(--shadow-color) / 0.31),
+        1.3px 2.9px 3.6px -0.8px hsl(var(--shadow-color) / 0.3),
+        3.3px 7.3px 9px -1.7px hsl(var(--shadow-color) / 0.3),
+        8px 17.7px 21.7px -2.5px hsl(var(--shadow-color) / 0.3);
+    --shadow-elevation-high:
+        0.4px 1px 1.2px hsl(var(--shadow-color) / 0.29),
+        2.2px 4.8px 5.9px -0.4px hsl(var(--shadow-color) / 0.28),
+        4px 8.8px 10.8px -0.7px hsl(var(--shadow-color) / 0.28),
+        6.5px 14.4px 17.7px -1.1px hsl(var(--shadow-color) / 0.28),
+        10.5px 23px 28.3px -1.5px hsl(var(--shadow-color) / 0.28),
+        16.4px 36px 44.2px -1.8px hsl(var(--shadow-color) / 0.28),
+        24.9px 54.8px 67.3px -2.2px hsl(var(--shadow-color) / 0.28),
+        36.7px 80.7px 99.1px -2.5px hsl(var(--shadow-color) / 0.28);
+}
+
+/** fonts */
+@font-face {
+    font-family: minecraft;
+    src: url(../fonts/minecraft.ttf);
+}
+
+@font-face {
+    font-family: minecraftsmall;
+    src: url(../fonts/minecraftsmall.otf);
+}
+
+@font-face {
+    font-family: Comfortaa;
+    src: url(../fonts/Comfortaa/Comfortaa-VariableFont_wght.ttf);
+}
+
+@font-face {
+    font-family: workSans;
+    src: url(../fonts/Work_Sans/WorkSans-VariableFont_wght.ttf);
+}
+
+.mc-font {
+    font-family: minecraft;
+}
+
+.mc-font-small {
+    font-family: minecraftsmall;
+}
+
+.font-comfortaa {
+    font-family: Comfortaa;
+}
+
+.font-workSans {
+    font-family: workSans;
+}
+
+/** actual css */
+html,
+body {
+    min-height: 100%;
+    margin: 0;
+}
+
+.notif {
+    border-radius: 7px;
+    padding: 14px;
+    display: inline-block;
+    color: #fff;
+}
+
+.notif #notif-message {
+    margin-bottom: 0;
+}
+
+.notif.warning {
+    background: rgba(255, 249, 178, .9);
+}
+
+.notif.error {
+    background: #f17070f2;
+    /*rgba(255, 175, 180, .9);*/
+}
+
+.notif.success {
+    background: rgb(166, 239, 184);
+}
+
+.notif-container {
+    max-width: 400px;
+    word-wrap: break-word;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+a {
+    margin-left: auto;
+    margin-right: auto;
+    text-decoration: none;
+}
+
+.link-overlay {
+    position: relative;
+}
+
+.link-overlay::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    background-color: rgb(255 255 255 / 21%);
+    /*rgba(0, 0, 0, 0.24);*/
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.link-overlay:hover::after {
+    opacity: 1;
+}
+
+.account-hover-overlay {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    border-radius: 5px;
+    min-width: 200px;
+    background-color: rgb(87 87 87 / 48%)
+}
+
+.account-hover-overlay::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    background-color: rgb(255 255 255 / 21%);
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.account-hover-overlay:hover::after {
+    opacity: 1;
+}
+
+.btn {
+    background-color: #40445a;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+/* Non-rounded border */
+.btn.nr {
+    border-radius: 0px;
+}
+
+/* Full width */
+.btn.fw {
+    width: 100%
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+    background-color: #3d3e51;
+}
+
+/* Darker Darker background on click */
+.btn:active {
+    background-color: #373847;
+    transform: translateY(4px);
+}
+
+/* Success btn */
+.btn.success {
+    background-color: #a6efb8e6;
+}
+
+/* Danger btn */
+.btn.danger {
+    background-color: #ffafb4e6;
+}
+
+/* Launch button */
+.btn.launch {
+    color: #fff;
+    background-color: #6bdb6f;
+}
+
+.btn.launch:hover {
+    background-color: #50af53
+}
+
+.btn.launch:active {
+    background-color: #3e8e41;
+    transform: translateY(4px);
+}
+
+hr {
+    border: 0;
+    border-radius: 5px;
+    height: .5px;
+    max-width: 240px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.507);
+}
+
+.hr-bm-2 {
+    border-bottom-width: 2px;
+}
+
+.hr-h-2 {
+    height: 2px;
+}
+
+.fa-microsoft.ms-logo-fa {
+    background: conic-gradient(#34a853 0deg 90deg,
+            /* Top Right */
+            #fbbc05 90deg 180deg,
+            /* Bottom Right */
+            #4285f4 180deg 270deg,
+            /* Bottom Left */
+            #ea4335 270deg 360deg
+            /* Top Left */
+        ) 75% 63% / 120% 100% no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+
+input {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.progress {
+    background: rgba(255, 255, 255, 0.1);
+    justify-content: flex-start;
+    border-radius: 100px;
+    align-items: center;
+    position: relative;
+    display: flex;
+    margin: 0 auto;
+    width: 350px;
+}
+
+.progress-bar {
+    box-shadow: 0 10px 18px -17px rgb(50, 180, 163);
+    border-radius: 100px;
+    background-color: rgb(57, 206, 186);
+    width: 0;
+    transition: width 0.3s ease-in-out;
+    height: 10px;
+}
+
+.progress-bar.error {
+    box-shadow: 0 10px 18px -17px rgb(223, 43, 43);
+    background-color: rgb(223, 43, 43);
+}
+
+.progress-bar.success {
+    box-shadow: 0 10px 18px -17px rgb(45, 245, 122);
+    background-color: rgb(45, 245, 122);
+}
+
+progress[value]::-webkit-progress-bar {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 100px;
+}
+
+progress[value]::-webkit-progress-value {
+    border-radius: 100px;
+    background: rgb(57, 206, 186);
+}
+
+progress[value]::-moz-progress-bar {
+    border-radius: 100px;
+    background: rgb(57, 206, 186);
+}
+
+progress[value]::-ms-fill {
+    border-radius: 100px;
+    background: rgb(57, 206, 186);
+}
+
+#versionbar {
+    width: 30%;
+    background-color: #9999ff;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.download-area {
+    min-width: 70%;
+    max-width: 77%;
+    background-color: #e17070;
+    border-radius: 15px;
+    margin: auto;
+    padding: 6px;
+}
+
+#islog {
+    margin: 4px;
+}
+
+.AccountDiv {
+    max-width: 300px;
+    height: fit-content;
+    margin: auto;
+    padding: 10px;
+    background-color: #212129;
+    margin-top: 5px;
+    border-radius: 10px;
+    color: white;
+}
+
+/** Backgrounds */
+.bg-login {
+    background-image: url(../images/bg-images/login.webp) !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+    background-size: cover !important;
+}
+
+.bg-launcher {
+    background-image: url(../images/bg-images/wallpapers_minecraft_java_edition/wallpaper_minecraft_java_edition_2048x2048.png) !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+    background-size: cover !important;
+}

@@ -1,33 +1,58 @@
 {
   "name": "launcherpi",
-  "version": "1.0.0",
-  "description": "",
-  "main": "main.js",
+  "version": "1.2.1",
+  "description": "A minecraft java launcher",
+  "main": "app/main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build": "node build-app.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "mc",
+    "mineraft",
+    "mc-launcher",
+    "mc-java"
+  ],
+  "author": {
+    "name": "gl91306 and oxmc",
+    "email": "contact@oxmc.is-a.dev"
+  },
   "license": "ISC",
+  "devDependencies": {
+    "electron": "^29.1.6",
+    "electron-builder": "^24.13.3"
+  },
   "dependencies": {
-    "async": "^3.2.2",
-    "async-get-file": "^1.0.4",
-    "axios": "^0.24.0",
+    "@electron/remote": "^2.1.2",
+    "axios": "^1.6.8",
     "child_process": "^1.0.2",
-    "electron": "^12.2.3",
-    "electron-browser-storage": "^1.0.7",
-    "electron-updater": "^4.3.9",
-    "extract-zip": "^2.0.1",
-    "follow-redirects": "^1.15.1",
-    "nexpect": "^0.6.0",
-    "normalize-url": "^4.5.0",
-    "path": "^0.12.7",
+    "electron-window-state": "^5.0.3",
+    "onezip": "^6.0.2",
     "request": "^2.88.2",
-    "request-promise": "^4.2.6",
-    "tar.gz": "^1.0.7",
-    "uuid": "^3.4.0",
-    "webview": "^1.0.0",
-    "yauzl": "^2.10.0",
-    "yggdrasil": "^1.6.1"
+    "unzipper": "^0.10.14",
+    "v8-compile-cache": "^2.4.0"
+  },
+  "build": {
+    "appId": "com.glox.launcherpi",
+    "productName": "LauncherPi",
+    "asarUnpack": [],
+    "artifactName": "launcherpi-${version}-${platform}-${arch}.${ext}",
+    "mac": {
+      "icon": "renderer/images/icon.icns",
+      "category": "Admin"
+    },
+    "linux": {
+      "target": [
+        "deb"
+      ],
+      "icon": "renderer/images/icon_256.png",
+      "category": "Admin"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "renderer/images/icon.ico"
+    }
   }
 }
