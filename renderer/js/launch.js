@@ -51,6 +51,7 @@ var launchBtn = document.getElementById("launchbutton");
 var progs = document.getElementById('progressBar');
 progs.style.display = 'none';
 
+// Helper Functions:
 function doesexist(file) {
   if (fs.existsSync(file)) {
     return true
@@ -133,6 +134,8 @@ async function downloadFile(url, output) {
   const fileExtension = url.split('.').pop();
   const fileName = url.split('/').pop();
   let outputPath = output;
+
+  console.log( `Downloading file: ${fileName} from: ${url}`);
 
   /*Save variable to know progress*/
   let received_bytes = 0;
@@ -920,11 +923,11 @@ class MinecraftVersion {
     logger.innerHTML = 'Downloading Natives';
 
     // Download lwjgl if it isnt there
-    var lwjglLink = "https://raw.githubusercontent.com/gl91306/lunar/master/lwjgl" + this.getLwjglNum() + "arm" + bitness + ".zip";
-    var lwjglPath = minecraftpath + "/natives/lwjgl" + this.getLwjglNum() + "arm" + bitness;
+    var lwjglLink = `https://raw.githubusercontent.com/gl91306/lunar/master/lwjgl${this.getLwjglNum()}arm${bitness}.zip`;
+    var lwjglPath = path.join(minecraftpath, `natives/lwjgl${this.getLwjglNum()}arm${bitness}`);
     if (!fs.existsSync(lwjglPath)) {
       exist(lwjglPath);
-      const outFile = path.join(lwjglPath, `lwjgl${this.getLwjglNum()}arm${bitness}.zip`);
+      const outFile = path.join(minecraftpath, 'natives', `lwjgl${this.getLwjglNum()}arm${bitness}.zip`);
       const writer = fs.createWriteStream(outFile);
 
       progs.style.display = "";
@@ -979,10 +982,10 @@ class MinecraftVersion {
         lwjglPath = path.join(minecraftpath, 'natives', `lwjgl${this.getLwjglNum()}win32${bitness}`);
         break;
       case 'darwin':
-        lwjglPath = path.join(minecraftpath, 'natives', this.getLwjglNum(), `darwin${bitness}`);
+        lwjglPath = path.join(minecraftpath, 'natives', `lwjgl${this.getLwjglNum()}darwin${bitness}`);
         break;
       case 'linux':
-        lwjglPath = path.join(minecraftpath, 'natives', this.getLwjglNum(), `arm${bitness}`);
+        lwjglPath = path.join(minecraftpath, 'natives', `lwjgl${this.getLwjglNum()}arm${bitness}`);
         break;
       default:
         break;

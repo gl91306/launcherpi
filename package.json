@@ -15,7 +15,7 @@
   ],
   "author": {
     "name": "gl91306 and oxmc",
-    "email": "contact@oxmc.is-a.dev"
+    "email": "gl&ox@oxmc.me"
   },
   "license": "ISC",
   "devDependencies": {
@@ -29,7 +29,6 @@
     "electron-window-state": "^5.0.3",
     "onezip": "^6.0.2",
     "request": "^2.88.2",
-    "unzipper": "^0.10.14",
     "v8-compile-cache": "^2.4.0"
   },
   "build": {
